@@ -1,4 +1,4 @@
-package snow
+package main
 
 import (
 	"fmt"

@@ -1,4 +1,4 @@
-package snow
+package main
 
 import (
 	"fmt"
@@ -6,6 +6,24 @@ import (
 )
 
 func main() {
+
+	go fmt.Println("开启邪趁")
+	//数组是值传递
+	x := [3]int{1, 2, 3}
+	func(arr [3]int) {
+		arr[0] = 5
+		fmt.Println(arr)
+	}(x)
+	fmt.Println(x)
+	//map遍历是顺序不固定的
+	m := map[string]string{
+		"1": "3",
+		"2": "4",
+		"3": "5",
+	}
+	for k, v := range m {
+		fmt.Println(k, v)
+	}
 
 	var times [5][0]int
 	for range times {
