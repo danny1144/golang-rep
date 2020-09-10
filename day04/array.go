@@ -2,10 +2,50 @@ package main
 
 import (
 	"fmt"
+	"reflect"
+	"strconv"
 	"sync"
 )
 
 func main() {
+	//Go各种类型转换及函数的高级用法
+	//字符串转整形
+	var changeStr = "1234"
+	fmt.Println(strconv.ParseInt(changeStr, 10, 0))
+
+	//golang不支持隐式类型转换
+	var tint byte = 100
+	fmt.Println(int(tint))
+	//int转字符串
+	convStr := strconv.Itoa(4)
+	fmt.Println(convStr, reflect.TypeOf(convStr))
+
+	//window int默认类型
+	var i int = 43
+	var float64 = float64(i)
+	fmt.Println(reflect.TypeOf(i))
+	fmt.Println(reflect.TypeOf(float64))
+
+	// 数组初始化
+	arr1 := [3]int{2, 2, 3}
+	arr2 := [5]int{0: 3, 3: 4, 4: 6}
+	arr3 := [...]string{"sdf", "aaa", "sdf sdf "}
+	arr4 := [...]struct {
+		name string
+		age  uint
+	}{
+		{"张三", 35},
+		{"李四", 32},
+		{"王五", 14},
+	}
+
+	fmt.Println(arr1, arr2, arr3, arr4)
+	//rune int32的别名，Unicode码用utf-8进行编码
+	str := len(string(rune('好')))
+	fmt.Println(str)
+	//获取中文字符串的长度，需要转换成rune切片
+	strZh := "中国人"
+	fmt.Println(len([]rune(strZh)))
 
 	go fmt.Println("开启邪趁")
 	//数组是值传递
@@ -39,6 +79,7 @@ func main() {
 
 	for i := 0; i < 3; i++ {
 		i := i
+		//Possible resource leak, 'defer' is called in a 'for' loop
 		defer func() { println(i) }()
 	}
 	//通过函数传入i，调用defer语句马上执行求值
