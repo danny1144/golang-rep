@@ -8,6 +8,11 @@ import (
 )
 
 func main() {
+	//new和make的区别
+	//make 用来创建map、slice、channel
+	//new 用来创建值类型 new 和 make 均是用于分配内存：
+	//new 用于值类型和用户定义的类型，如自定义结构，make 用于内置引用类型（切片、map 和管道）
+
 	//Go各种类型转换及函数的高级用法
 	//字符串转整形
 	var changeStr = "1234"
